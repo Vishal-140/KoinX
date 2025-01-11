@@ -22,7 +22,7 @@ The application offers users a seamless experience by displaying current Bitcoin
 
 ## Tech Stack
 
-- **Frontend**: React.js
+- **Frontend**: React.js, Tailwind CSS
 - **API**: CoinGecko API for price data
 - **Charting**: TradingView for real-time charts
 - **Deployment**: Vercel
