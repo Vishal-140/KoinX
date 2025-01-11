@@ -24,3 +24,7 @@ The application offers users a seamless experience by displaying current Bitcoin
 - **API**: CoinGecko API for price data
 - **Charting**: TradingView for real-time charts
 - **Deployment**: Vercel
+
+## NOTE
+
+If website go blank then please wait for few seconds then reload again
