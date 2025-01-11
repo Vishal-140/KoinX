@@ -4,6 +4,8 @@
 
 [View Figma Design](https://www.figma.com/design/VRj5MqVPoQdj5N7AwmYc98/KoinX---Frontend-Intern-Assignment?node-id=0-1&p=f&t=bSuuIShBivLOAI9y-0)
 
+[KoinX - Frontend Intern Assignment Details](https://koinx.notion.site/KoinX-Frontend-Intern-Assignment-8d58a764615d445087b666bf0f6daf4a)
+
 ## Overview
 
 KoinX is a modern, responsive web application designed to provide real-time cryptocurrency insights, with a primary focus on Bitcoin pricing and market trends. Built using **React.js**, the application leverages the **CoinGecko API** to deliver up-to-the-minute price information in both **USD** and **INR**, alongside a comprehensive **TradingView** price chart.
@@ -24,7 +26,3 @@ The application offers users a seamless experience by displaying current Bitcoin
 - **API**: CoinGecko API for price data
 - **Charting**: TradingView for real-time charts
 - **Deployment**: Vercel
-
-## NOTE
-
-If website go blank then please wait for few seconds then reload again
