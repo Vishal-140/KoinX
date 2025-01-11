@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { IoMdInformationCircle } from 'react-icons/io';
 
 function PerformanceSection() {
   const [coinData, setCoinData] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Default values
-  const defaultData = {
+  // Memoized default values
+  const defaultData = useMemo(() => ({
     market_data: {
       current_price: { usd: 94362.00 },
       low_24h: { usd: 92276.00 },
@@ -27,7 +26,7 @@ function PerformanceSection() {
       atl_date: { usd: "2013-07-05T14:24:11.849Z" }
     },
     market_cap_rank: 1
-  };
+  }), []);
 
   useEffect(() => {
     const fetchCoinData = async () => {
@@ -43,7 +42,7 @@ function PerformanceSection() {
         const data = await response.json();
         setCoinData(data);
       } catch (err) {
-        setError(err.message);
+        console.error(err.message); 
         setCoinData(defaultData);
       } finally {
         setLoading(false);
@@ -51,7 +50,7 @@ function PerformanceSection() {
     };
 
     fetchCoinData();
-  }, []);
+  }, [defaultData]);
 
   const calculatePosition = (low, high, current) => {
     const range = high - low;
@@ -62,7 +61,7 @@ function PerformanceSection() {
   const data = loading ? defaultData : (coinData || defaultData);
 
   return (
-    <div className="bg-white mt-5 rounded-lg lg:p-6 p-2 h-max">
+    <div id="performance" className="bg-white mt-5 rounded-lg lg:p-6 p-2 h-max">
       <div>
         <div className="text-2xl flex font-semibold text-[#0F1629]">Performance</div>
         <div className="py-4 mt-2">
@@ -72,11 +71,11 @@ function PerformanceSection() {
                 Today's Low
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.low_24h.usd.toLocaleString()}
+                ${data.market_data.low_24h.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
             <div className="w-[500px] h-2 mx-4 relative">
-              <div className="bg-gradient-to-r from-red-500 via-orange-300  to-green-500 h-full rounded-2xl"></div>
+              <div className="bg-gradient-to-r from-red-500 via-orange-300 to-green-500 h-full rounded-2xl"></div>
               <div className="absolute w-full" style={{ top: '0' }}>
                 <div style={{ 
                   position: 'absolute', 
@@ -86,7 +85,7 @@ function PerformanceSection() {
                     data.market_data.current_price.usd
                   )}%`,
                   transform: 'translateX(-50%)',
-                  marginTop: '8px',
+                  marginTop: '8 px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center'
@@ -94,18 +93,18 @@ function PerformanceSection() {
                   <svg viewBox="0 0 100 100" className="lg:w-3 w-2 fill-current text-black">
                     <polygon points="0,100 50,0 100,100" />
                   </svg>
-                <span className="text-[#44475B] text-sm font-normal mt-1">
-                  ${data.market_data.current_price.usd.toLocaleString()}
-                </span>
+                  <span className="text-[#44475B] text-sm font-normal mt-1">
+                    ${data.market_data.current_price.usd?.toLocaleString() || 'Loading...'}
+                  </span>
+                </div>
               </div>
-            </div>
             </div>
             <div className="text-end">
               <div className="text-sm text-[#44475B] font-normal p-1">
                 Today's High
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.high_24h.usd.toLocaleString()}
+                ${data.market_data.high_24h.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
           </div>
@@ -115,7 +114,7 @@ function PerformanceSection() {
                 52W Low
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.low_52w.usd.toLocaleString()}
+                ${data.market_data.low_52w.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
             <div className="w-[500px] h-2 mx-4">
@@ -126,7 +125,7 @@ function PerformanceSection() {
                 52W High
               </div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.high_52w.usd.toLocaleString()}
+                ${data.market_data.high_52w.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
           </div>
@@ -148,7 +147,7 @@ function PerformanceSection() {
                   Bitcoin Price
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.current_price.usd.toLocaleString()}
+                  ${data.market_data.current_price.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -156,7 +155,7 @@ function PerformanceSection() {
                   24h Low / 24h High
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.low_24h.usd.toLocaleString()} / ${data.market_data.high_24h.usd.toLocaleString()}
+                  ${data.market_data.low_24h.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_24h.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -164,15 +163,16 @@ function PerformanceSection() {
                   7d Low / 7d High
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.low_7d.usd.toLocaleString()} / ${data.market_data.high_7d.usd.toLocaleString()}
+                  ${data.market_data.low_7d.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_7d.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
                 <div className="text-[#768396] text-sm font-semibold">
                   Trading Volume
                 </div>
-                <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.total_volume.usd.toLocaleString()}
+                <div className="text-[#111827] text-sm font-semibold mr ```javascript
+                -4">
+                  ${data.market_data.total_volume.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -190,7 +190,7 @@ function PerformanceSection() {
                   Market Cap
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.market_cap.usd.toLocaleString()}
+                  ${data.market_data.market_cap.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
@@ -206,7 +206,7 @@ function PerformanceSection() {
                   Volume / Market Cap
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  {(data.market_data.total_volume.usd / data.market_data.market_cap.usd).toFixed(4)}
+                  {(data.market_data.total_volume.usd / data.market_data.market_cap.usd).toFixed(4) || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-3 border-b-2 border-[#D3E0E6] items-center">
@@ -215,9 +215,9 @@ function PerformanceSection() {
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
                   <div className="text-end ">
-                    ${data.market_data.ath.usd.toLocaleString()} 
+                    ${data.market_data.ath.usd?.toLocaleString() || 'Loading...'} 
                     <span className="ml-2 text-red-500">
-                      {data.market_data.ath_change_percentage.usd.toFixed(1)}%
+                      {data.market_data.ath_change_percentage.usd?.toFixed(1) || 'Loading...'}%
                     </span>
                   </div>
                   <div className="text-xs font-normal">
@@ -231,9 +231,9 @@ function PerformanceSection() {
                 </div>
                 <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
                   <div className="text-end">
-                    ${data.market_data.atl.usd.toLocaleString()} 
+                    ${data.market_data.atl.usd?.toLocaleString() || 'Loading...'} 
                     <span className="ml-2 text-green-500">
-                      {data.market_data.atl_change_percentage.usd.toFixed(1)}%
+                      {data.market_data.atl_change_percentage.usd?.toFixed(1) || 'Loading...'}%
                     </span>
                   </div>
                   <div className="text-xs font-normal">

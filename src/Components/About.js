@@ -2,7 +2,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 function About() {
   return (
-    <div className="bg-white flex h-max rounded-lg my-5 lg:p-6 p-2">
+    <div id="about" className="bg-white flex h-max rounded-lg my-5 lg:p-6 p-2">
       <div>
         <div className="text-2xl flex font-semibold text-[#0F1629]">
           About Bitcoin

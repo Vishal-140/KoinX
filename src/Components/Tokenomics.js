@@ -2,7 +2,7 @@ import React from 'react';
 
 function Tokenomics() {
   return (
-    <div className="bg-white h-max rounded-lg my-5 p-6">
+    <div id="tokenomics" className="bg-white h-max rounded-lg my-5 p-6">
       <div className="text-[#0F1629] flex text-2xl font-semibold">Tokenomics</div>
       <div className="my-6">
         <div className="text-[#1D1D1D] flex text-xl font-semibold">

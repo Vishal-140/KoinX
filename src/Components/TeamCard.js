@@ -2,7 +2,7 @@ import React from 'react';
 
 function TeamCard() {
   return (
-    <div className="bg-white h-max rounded-lg my-5 lg:p-6 p-2">
+    <div id="team" className="bg-white h-max rounded-lg my-5 lg:p-6 p-2">
       <div>
         <div className="text-2xl text-[#0F1629] flex font-semibold">Team</div>
         <div className="text-[#3E424A] text-[16px] font-medium my-4 pt-2">
