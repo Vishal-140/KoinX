@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, memo } from 'react';
 
-function TradingViewWidget() {
+function TradingViewWidget({ range }) {
   const container = useRef(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function TradingViewWidget() {
           enable_publishing: false,
           hide_top_toolbar: true,
           hide_legend: true,
-          range: "5D",
+          range: range, // Use the passed range prop
           save_image: false,
           calendar: false,
           hide_volume: true,
@@ -38,14 +38,13 @@ function TradingViewWidget() {
         container.current.removeChild(script);
       }
     };
-  }, []);
+  }, [range]); // Re-run effect when range changes
 
   return (
     <div 
       id="tradingview_widget"
-      className="tradingview-widget-container" 
+      className="tradingview-widget-container w-full h-[400px] md:h-[300px] sm:h-[250px]" 
       ref={container}
-      style={{ height: "500px", width: "100%" }}
     />
   );
 }

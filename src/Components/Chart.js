@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TradingViewWidget from "./TradingViewWidget";
 import img from "../assets/btc.png";
 
 function Chart() {
   const [cryptoData, setCryptoData] = useState(null);
+  const [selectedPeriod, setSelectedPeriod] = useState("7D"); // Default selected period
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +26,7 @@ function Chart() {
     return () => clearInterval(interval);
   }, []);
 
-  // Memoize the TradingViewWidget to avoid multiple re-renders
-  const chart = useMemo(() => <TradingViewWidget />, []);
+  const timePeriods = ["1H", "24H", "7D", "1M", "3M", "6M", "1Y", "All"];
 
   return (
     <div className="bg-white h-max rounded-lg my-5 p-6">
@@ -84,19 +84,24 @@ function Chart() {
         <div className="ls:text-lg text-sm font-semibold text-[#0B1426]">
           Bitcoin Price Chart (USD)
         </div>
-        <div className="flex lg:space-x-5 space-x-3 mr-4 text-sm text-[#5D667B] font-medium text-center items-center">
-          <div>1H</div>
-          <div>24H</div>
-          <div className="text-[#0141CF] bg-[#E2ECFE] rounded-3xl px-3 py-1">7D</div>
-          <div>1M</div>
-          <div>3M</div>
-          <div>6M</div>
-          <div>1Y</div>
-          <div>All</div>
+        <div className="overflow-x-auto flex space-x-3 mr-4 text-sm text-[#5D667B] font-medium text-center items-center">
+          {timePeriods.map((period) => (
+            <div
+              key={period}
+              onClick={() => setSelectedPeriod(period)}
+              className={`cursor-pointer rounded-3xl px-3 py-1 ${
+                selectedPeriod === period
+                  ? "text-[#0141CF] bg-[#E2ECFE]"
+                  : "text-black"
+              }`}
+            >
+              {period}
+            </div>
+          ))}
         </div>
       </div>
       <div className="lg:h-[420px] h-[300px] overflow-hidden">
-        {chart}
+        <TradingViewWidget range={selectedPeriod === "All" ? "max" : selectedPeriod} />
       </div>
     </div>
   );
