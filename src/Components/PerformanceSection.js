@@ -67,11 +67,9 @@ function PerformanceSection() {
         <div className="py-4 mt-2">
           <div className="flex justify-between">
             <div className="text-start">
-              <div className="text-sm text-[#44475B] font-normal p-1">
-                Today's Low
-              </div>
+              <div className="text-sm text-[#44475B] font-normal p-1">Today's Low</div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.low_24h.usd?.toLocaleString() || 'Loading...'}
+                ${data.market_data.low_24h?.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
             <div className="w-[500px] h-2 mx-4 relative">
@@ -80,12 +78,12 @@ function PerformanceSection() {
                 <div style={{ 
                   position: 'absolute', 
                   left: `${calculatePosition(
-                    data.market_data.low_24h.usd,
-                    data.market_data.high_24h.usd,
-                    data.market_data.current_price.usd
+                    data.market_data.low_24h?.usd,
+                    data.market_data.high_24h?.usd,
+                    data.market_data.current_price?.usd
                   )}%`,
                   transform: 'translateX(-50%)',
-                  marginTop: '8 px',
+                  marginTop: '8px',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center'
@@ -94,38 +92,32 @@ function PerformanceSection() {
                     <polygon points="0,100 50,0 100,100" />
                   </svg>
                   <span className="text-[#44475B] text-sm font-normal mt-1">
-                    ${data.market_data.current_price.usd?.toLocaleString() || 'Loading...'}
+                    ${data.market_data.current_price?.usd?.toLocaleString() || 'Loading...'}
                   </span>
                 </div>
               </div>
             </div>
             <div className="text-end">
-              <div className="text-sm text-[#44475B] font-normal p-1">
-                Today's High
-              </div>
+              <div className="text-sm text-[#44475B] font-normal p-1">Today's High</div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.high_24h.usd?.toLocaleString() || 'Loading...'}
+                ${data.market_data.high_24h?.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
           </div>
           <div className="flex justify-between mt-5">
             <div className="text-start">
-              <div className="text-sm text-[#44475B] font-normal p-1">
-                52W Low
-              </div>
+              <div className="text-sm text-[#44475B] font-normal p-1">52W Low</div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.low_52w.usd?.toLocaleString() || 'Loading...'}
+                ${data.market_data.low_52w?.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
             <div className="w-[500px] h-2 mx-4">
               <div className="bg-gradient-to-r from-red-500 via-orange-300 to-green-500 h-full rounded-2xl mt-7"></div>
             </div>
             <div className="text-end">
-              <div className="text-sm text-[#44475B] font-normal p-1">
-                52W High
-              </div>
+              <div className="text-sm text-[#44475B] font-normal p-1">52W High</div>
               <div className="text-[#44475B] text-lg font-medium p-1">
-                ${data.market_data.high_52w.usd?.toLocaleString() || 'Loading...'}
+                ${data.market_data.high_52w?.usd?.toLocaleString() || 'Loading...'}
               </div>
             </div>
           </div>
@@ -133,111 +125,86 @@ function PerformanceSection() {
 
         <div className="mt-4">
           <div className="flex items-center">
-            <div className="text-[#44475B] font-semibold text-xl">
-              Fundamentals
-            </div>
-            <div className="">
+            <div className="text-[#44475B] font-semibold text-xl">Fundamentals</div>
+            <div>
               <IoMdInformationCircle className="text-[#ABB9BF] text-lg ml-2" />
             </div>
           </div>
           <div className="lg:flex mb-8">
             <div className="lg:w-1/2 lg:mr-10 mt-3">
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Bitcoin Price
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">Bitcoin Price</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.current_price.usd?.toLocaleString() || 'Loading...'}
+                  ${data.market_data.current_price?.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  24h Low / 24h High
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">24h Low / 24h High</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.low_24h.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_24h.usd?.toLocaleString() || 'Loading...'}
+                  ${data.market_data.low_24h?.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_24h?.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  7d Low / 7d High
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">7d Low / 7d High</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.low_7d.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_7d.usd?.toLocaleString() || 'Loading...'}
+                  ${data.market_data.low_7d?.usd?.toLocaleString() || 'Loading...'} / ${data.market_data.high_7d?.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Trading Volume
-                </div>
-                <div className="text-[#111827] text-sm font-semibold mr ```javascript
-                -4">
-                  ${data.market_data.total_volume.usd?.toLocaleString() || 'Loading...'}
+                <div className="text-[#768396] text-sm font-semibold">Trading Volume</div>
+                <div className="text-[#111827] text-sm font-semibold mr-4">
+                  ${data.market_data.total_volume?.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Market Cap Rank
-                </div>
-                <div className="text-[#111827] text-sm font-semibold mr-4">
-                  #{data.market_cap_rank}
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">Market Cap Rank</div>
+                <div className="text-[#111827] text-sm font-semibold mr-4">#{data.market_cap_rank}</div>
               </div>
             </div>
             <div className="lg:w-1/2 lg:ml-10 lg:mt-3">
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Market Cap
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">Market Cap</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  ${data.market_data.market_cap.usd?.toLocaleString() || 'Loading...'}
+                  ${data.market_data.market_cap?.usd?.toLocaleString() || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Market Cap Dominance
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">Market Cap Dominance</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
                   {data.market_data.market_cap_percentage}%
                 </div>
               </div>
               <div className="flex justify-between py-5 border-b-2 border-[#D3E0E6]">
-                <div className="text-[#768396] text-sm font-semibold">
-                  Volume / Market Cap
-                </div>
+                <div className="text-[#768396] text-sm font-semibold">Volume / Market Cap</div>
                 <div className="text-[#111827] text-sm font-semibold mr-4">
-                  {(data.market_data.total_volume.usd / data.market_data.market_cap.usd).toFixed(4) || 'Loading...'}
+                  {(data.market_data.total_volume?.usd / data.market_data.market_cap?.usd).toFixed(4) || 'Loading...'}
                 </div>
               </div>
               <div className="flex justify-between py-3 border-b-2 border-[#D3E0E6] items-center">
-                <div className="text-[#768396] text-sm font-semibold">
-                  All-Time High
-                </div>
-                <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
+                <div className="text-[#768396] text-sm font-semibold">All-Time High</div>
+                <div className="text-[#111827] text-sm font-semibold mr-4">
                   <div className="text-end ">
-                    ${data.market_data.ath.usd?.toLocaleString() || 'Loading...'} 
+                    ${data.market_data.ath?.usd?.toLocaleString() || 'Loading...'} 
                     <span className="ml-2 text-red-500">
-                      {data.market_data.ath_change_percentage.usd?.toFixed(1) || 'Loading...'}%
+                      {data.market_data.ath_change_percentage?.usd?.toFixed(1) || 'Loading...'}%
                     </span>
                   </div>
                   <div className="text-xs font-normal">
-                    {new Date(data.market_data.ath_date.usd).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    {new Date(data.market_data.ath_date?.usd).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </div>
                 </div>
               </div>
               <div className="flex justify-between py-3 border-b-2 border-[#D3E0E6] items-center">
-                <div className="text-[#768396] text-sm font-semibold">
-                  All-Time Low
-                </div>
-                <div className="text-[#111827] text-sm font-semibold mr-4 -p-2">
+                <div className="text-[#768396] text-sm font-semibold">All-Time Low</div>
+                <div className="text-[#111827] text-sm font-semibold mr-4">
                   <div className="text-end">
-                    ${data.market_data.atl.usd?.toLocaleString() || 'Loading...'} 
+                    ${data.market_data.atl?.usd?.toLocaleString() || 'Loading...'} 
                     <span className="ml-2 text-green-500">
-                      {data.market_data.atl_change_percentage.usd?.toFixed(1) || 'Loading...'}%
+                      {data.market_data.atl_change_percentage?.usd?.toFixed(1) || 'Loading...'}%
                     </span>
                   </div>
                   <div className="text-xs font-normal">
-                    {new Date(data.market_data.atl_date.usd).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    {new Date(data.market_data.atl_date?.usd).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                   </div>
                 </div>
               </div>
