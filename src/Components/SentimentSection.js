@@ -1,7 +1,13 @@
 import { FaAngleRight } from "react-icons/fa";
 import { IoMdInformationCircle } from "react-icons/io";
 
+
 function SentimentSection() {
+  const estimates = {
+    buy: 76,
+    hold: 8,
+    sell: 16
+  };
   return (
     <div className="bg-white h-max rounded-lg my-5 lg:p-6 p-3">
       <div>
@@ -83,38 +89,65 @@ function SentimentSection() {
         </div>
 
         {/* Analyst Estimates Section */}
-        <div className="mb-6">
-          <div className="flex items-center py-4 mt-6">
-            <div className="text-[#44475B] font-semibold text-xl">
-              Analyst Estimates
-            </div>
-            <IoMdInformationCircle className="text-[#ABB9BF] text-lg ml-2" />
-          </div>
+        <div className="w-full max-w-4xl p-6">
+      {/* Header */}
+      <div className="flex items-center gap-2 mb-8">
+        <h2 className="text-xl font-semibold text-gray-700">Analyst Estimates</h2>
+        <IoMdInformationCircle className="text-gray-400 w-5 h-5" />
+      </div>
 
-          <div className="flex mt-2">
-            {/* Buy Estimate */}
-            <div className="text-4xl bg-[#EBF9F4] text-[#0FBA83] font-medium p-5 rounded-lg flex flex-col items-center w-full">
-              <div className="text-base font-medium">Buy</div>
-              <div className="flex items-center justify-center">
-                <div className="text-[#0FBA83]">72%</div>
-              </div>
-            </div>
-            {/* Hold Estimate */}
-            <div className="text-4xl bg-[#E8F4FD] text-[#40B0FF] font-medium p-5 rounded-lg flex flex-col items-center w-full ml-5">
-              <div className="text-base font-medium">Hold</div>
-              <div className="flex items-center justify-center">
-                <div className="text-[#40B0FF]">14%</div>
-              </div>
-            </div>
-            {/* Sell Estimate */}
-            <div className="text-4xl bg-[#FFE6E6] text-[#FF4D4D] font-medium p-5 rounded-lg flex flex-col items-center w-full ml-5">
-              <div className="text-base font-medium">Sell</div>
-              <div className="flex items-center justify-center">
-                <div className="text-[#FF4D4D]">14%</div>
-              </div>
-            </div>
+      {/* Main Content */}
+      <div className="flex items-center gap-8">
+        {/* Percentage Circle */}
+        <div className="relative w-40 h-40 bg-green-50 rounded-full flex items-center justify-center">
+          <div className="text-5xl font-semibold text-green-500">
+            {estimates.buy}%
           </div>
         </div>
+
+        {/* Bar Chart */}
+        <div className="flex-1 space-y-4">
+          {/* Buy */}
+          <div className="flex items-center gap-4">
+            <div className="w-12 text-gray-600">Buy</div>
+            <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-green-500 rounded-full"
+                style={{ width: `${estimates.buy}%` }}
+              />
+            </div>
+            <div className="w-12 text-gray-600">{estimates.buy}%</div>
+          </div>
+
+          {/* Hold */}
+          <div className="flex items-center gap-4">
+            <div className="w-12 text-gray-600">Hold</div>
+            <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-gray-400 rounded-full"
+                style={{ width: `${estimates.hold}%` }}
+              />
+            </div>
+            <div className="w-12 text-gray-600">{estimates.hold}%</div>
+          </div>
+
+          {/* Sell */}
+          <div className="flex items-center gap-4">
+            <div className="w-12 text-gray-600">Sell</div>
+            <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-red-500 rounded-full"
+                style={{ width: `${estimates.sell}%` }}
+              />
+            </div>
+            <div className="w-12 text-gray-600">{estimates.sell}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
       </div>
     </div>
   );
