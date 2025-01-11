@@ -41,10 +41,10 @@ function Chart() {
       <div className="mt-8 flex">
         <div>
           <div className="text-3xl font-semibold text-[#0B1426]">
-            {(cryptoData && `$${cryptoData.usd}`) || `$66759`}
+            {(cryptoData && `$${cryptoData.usd}`) || `$96759`}
           </div>
           <div className="text-lg font-medium text-[#0B1426]">
-            {(cryptoData && `₹ ${cryptoData.inr}`) || `₹ 5535287`}
+            {(cryptoData && `₹ ${cryptoData.inr}`) || `₹ 8340193`}
           </div>
         </div>
         <div
